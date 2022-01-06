@@ -4,7 +4,12 @@
 // const timeBlock = $("#time-block");
 
 var currentDate = moment().format('MMMM Do, dddd');
-var currentHour = moment().format('H');
+var currentHour = moment().format('h');
+
+var now = moment(); 
+
+console.log(currentHour);
+
 // print current date and time on `lead`
 
 const currentDay = function() {
@@ -213,3 +218,92 @@ const getFromLocalStorage = function() {
 };
 
 getFromLocalStorage();
+
+
+// got the class time block in html
+
+// var nineAmTimeBlock = document.querySelector("#9amtimeblock");
+
+// var nineAmHour = document.querySelector("nineamhour");
+// var tenAmHour = document.querySelector("tenamhour");
+// var elevenAmHour = document.querySelector("elevenamhour");
+// console.log(nineAmHour)
+
+// if current hour is 9:00 
+
+// const activeTimeBlockColor = function() {
+//     if (currentHour === ){
+
+//     }
+// }
+
+var hourNine = $('.time-block').data('hour');
+var hourTen = $('.time-block').data('hour');
+var hourEleven = $('.time-block').data('hour');
+var hourTwelve = $('.time-block').data('hour');
+var hourOne = $('.time-block').data('hour');
+var hourTwo = $('.time-block').data('hour');
+var hourThree = $('.time-block').data('hour');
+var hourFour = $('.time-block').data('hour');
+var hourFive = $('.time-block').data('hour');
+
+// console.log(hourNine);
+
+// $('.time-block').data('hour');
+// $.each($.data(this, function(i, e){
+//     i++;
+//     console.log(i);
+//     console.log(e);
+// }))
+
+// $('.time-block[data-hour]').each(function(){
+
+// })
+
+var mainArray = [];
+// get all the hours in an array/object
+$("div[class*='time-block']").each(function() {
+    var tempArray = $(this).val();
+    console.log(tempArray);
+
+    // $(this).addClass('future');
+})
+
+console.log(document.querySelector('.time-block').getAttribute("data-hour"));
+console.log($(".time-block").data("hour"));
+
+var $timeBlocks = $(".time-block");
+console.log($timeBlocks);
+
+var hourToUpdate = $(this).parent().attr("data-hour");
+console.log(hourToUpdate);
+
+// creating IDs to use for time block compare function
+
+const presentPastFuture = function() {
+    console.log(currentHour);
+    console.log(hourEleven);
+    if (5 == 5) {
+        // var present = $('.present');
+        // console.log(present);
+        
+        $('.12pm-time-block').addClass('present');
+    } else if (currentHour > 12) {
+        $('.12pm-time-block').addClass('future');
+    } else { 
+        $('.12pm-time-block').addClass('past');
+    }
+}
+
+presentPastFuture();
+
+// $('div.time-block')
+
+// const testTimeBlock = $("div[class*='time-block']")
+// console.log(testTimeBlock);
+
+$("div[class*='time-block']").each(function(){
+    // add if statement as above and at the time it present/past/future
+    $(this).addClass('future');
+    // if (currentHour == )
+})
