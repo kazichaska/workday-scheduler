@@ -1,9 +1,5 @@
-// psudo code  for workday scheduler (jQuery, Bootstrap, jQueryUI, Moment.js, Google Fonts, Iconic)
 
-// variable declaration here
-// const timeBlock = $("#time-block");
-
-var currentDate = moment().format('MMMM Do, dddd');
+var currentDate = moment().format('dddd, MMMM Do');
 var currentHour = moment().format('h');
 
 var now = moment(); 
@@ -44,6 +40,15 @@ const fourpmPlanInput = document.querySelector("#fourpmTextArea");
 const fivepmPlanInput = document.querySelector("#fivepmTextArea");
 
 
+// event lister function to capture text when it is entered on the box
+
+// create planner so it shows start and end time on the page from 9:00a.m. till 5:00p.m.
+
+// current day would show when planner is opened with standard business hour
+
+//  time block is color-coded to indicate whether it is past, present or future
+
+// upon clicking on time block it lets to add event
 
 nineamButton.addEventListener("click", function(event) {
     event.preventDefault();
@@ -162,35 +167,8 @@ fivepmButton.addEventListener("click", function(event) {
 });
 
 
-// event lister function to capture text when it is entered on the box
-
-// create planner so it shows start and end time on the page from 9:00a.m. till 5:00p.m.
-
-
-// current day would show when planner is opened with standard business hour
-
-
-//  time block is color-coded to indicate whether it is past, present or future
-
-
-
-// upon clicking on time block it lets to add event
-
-
 // would have a `save` button to save event to `local storage`
 // get data from localstorage and render to page
-
-// const getFromLocalStorage = function() { 
-//     var nineamDayPlanLs = (JSON.parse(localStorage.getItem("nineamDayPlan")).nineamPlan);
-//     // Research how to append data to textarea in javascript
-//     // document.querySelector("#nineamTextArea") = nineamDayPlanLs;
-//     nineamPlanInput.innerHTML += nineamDayPlanLs;
-// };
-
-// getFromLocalStorage();
-
-// console.log(JSON.parse(localStorage.getItem("nineamDayPlan")).nineamPlan);
-// refreshing page would persist events
 
 const getFromLocalStorage = function() { 
 
@@ -204,8 +182,7 @@ const getFromLocalStorage = function() {
     var fourpmDayPlanLs = (JSON.parse(localStorage.getItem("fourpmDayPlan")).fourpmPlan);
     var fivepmDayPlanLs = (JSON.parse(localStorage.getItem("fivepmDayPlan")).fivepmPlan);
 
-    // Research how to append data to textarea in javascript
-    // document.querySelector("#nineamTextArea") = nineamDayPlanLs;
+    
     nineamPlanInput.innerHTML += nineamDayPlanLs;
     tenamPlanInput.innerHTML += tenamDayPlanLs;
     elevenamPlanInput.innerHTML += elevenamDayPlanLs;
@@ -216,82 +193,45 @@ const getFromLocalStorage = function() {
     fourpmPlanInput.innerHTML += fourpmDayPlanLs;
     fivepmPlanInput.innerHTML += fivepmDayPlanLs;
 };
-
+// refreshing page would persist events
 getFromLocalStorage();
 
 
-// got the class time block in html
-
-// var nineAmTimeBlock = document.querySelector("#9amtimeblock");
-
-// var nineAmHour = document.querySelector("nineamhour");
-// var tenAmHour = document.querySelector("tenamhour");
-// var elevenAmHour = document.querySelector("elevenamhour");
-// console.log(nineAmHour)
-
-// if current hour is 9:00 
-
-// const activeTimeBlockColor = function() {
-//     if (currentHour === ){
-
-//     }
-// }
-
-var hourNine = $('.time-block').data('hour');
-var hourTen = $('.time-block').data('hour');
-var hourEleven = $('.time-block').data('hour');
-var hourTwelve = $('.time-block').data('hour');
-var hourOne = $('.time-block').data('hour');
-var hourTwo = $('.time-block').data('hour');
-var hourThree = $('.time-block').data('hour');
-var hourFour = $('.time-block').data('hour');
-var hourFive = $('.time-block').data('hour');
-
-// console.log(hourNine);
-
-// $('.time-block').data('hour');
-// $.each($.data(this, function(i, e){
-//     i++;
-//     console.log(i);
-//     console.log(e);
-// }))
-
-// $('.time-block[data-hour]').each(function(){
-
-// })
+// Array to collect all time block and use it later
 
 var mainArray = [];
 // get all the hours in an array/object
-$("div[class*='time-block']").each(function() {
-    var tempArray = $(this).val();
-    console.log(tempArray);
-
-    // $(this).addClass('future');
+$("div[class*='time-block']").each(function(data) {
+    mainArray.push ($(this));
+    // console.log(this);
 })
 
-console.log(document.querySelector('.time-block').getAttribute("data-hour"));
-console.log($(".time-block").data("hour"));
+console.log(mainArray[2].data('hour'));
 
-var $timeBlocks = $(".time-block");
-console.log($timeBlocks);
 
-var hourToUpdate = $(this).parent().attr("data-hour");
-console.log(hourToUpdate);
 
 // creating IDs to use for time block compare function
 
 const presentPastFuture = function() {
     console.log(currentHour);
-    console.log(hourEleven);
-    if (5 == 5) {
-        // var present = $('.present');
-        // console.log(present);
-        
-        $('.12pm-time-block').addClass('present');
-    } else if (currentHour > 12) {
-        $('.12pm-time-block').addClass('future');
-    } else { 
-        $('.12pm-time-block').addClass('past');
+    // console.log(hourEleven);
+    console.log(mainArray[7].data('hour'));
+    console.log($("div[class*='time-block']"));
+    for (i = 0; i < mainArray.length; i++) {
+        if ((mainArray[i].data('hour')) === currentHour) {
+            $("div[class*='time-block']").addClass('present');
+            $("div[class*='time-block']").removeClass('future');
+            $("div[class*='time-block']").removeClass('past');
+        } else if ((mainArray[i].data('hour')) < currentHour) {
+            $("div[class*='time-block']").addClass('past');
+            $("div[class*='time-block']").removeClass('present');
+            $("div[class*='time-block']").removeClass('future');
+        }
+        else { 
+            $("div[class*='time-block']").addClass('future');
+            $("div[class*='time-block']").removeClass('present');
+            $("div[class*='time-block']").removeClass('past');
+        }
     }
 }
 
@@ -302,8 +242,8 @@ presentPastFuture();
 // const testTimeBlock = $("div[class*='time-block']")
 // console.log(testTimeBlock);
 
-$("div[class*='time-block']").each(function(){
-    // add if statement as above and at the time it present/past/future
-    $(this).addClass('future');
-    // if (currentHour == )
-})
+// $("div[class*='time-block']").each(function() {
+//     // add if statement as above and at the time it present/past/future
+//     $(this).addClass('future');
+//     // if (currentHour == )
+// });
