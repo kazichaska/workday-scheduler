@@ -1,10 +1,12 @@
-// psudo code  for workday scheduler (jQuery, Bootstrap, jQueryUI, Moment.js, Google Fonts, Iconic)
 
-// variable declaration here
-// const timeBlock = $("#time-block");
-
-var currentDate = moment().format('MMMM Do, dddd');
+var currentDate = moment().format('dddd, MMMM Do');
+// making 24 hour clock for time calculation
 var currentHour = moment().format('H');
+// getting cu
+var now = moment(); 
+
+console.log(currentHour);
+
 // print current date and time on `lead`
 
 const currentDay = function() {
@@ -39,6 +41,15 @@ const fourpmPlanInput = document.querySelector("#fourpmTextArea");
 const fivepmPlanInput = document.querySelector("#fivepmTextArea");
 
 
+// event lister function to capture text when it is entered on the box
+
+// create planner so it shows start and end time on the page from 9:00a.m. till 5:00p.m.
+
+// current day would show when planner is opened with standard business hour
+
+//  time block is color-coded to indicate whether it is past, present or future
+
+// upon clicking on time block it lets to add event
 
 nineamButton.addEventListener("click", function(event) {
     event.preventDefault();
@@ -157,50 +168,22 @@ fivepmButton.addEventListener("click", function(event) {
 });
 
 
-// event lister function to capture text when it is entered on the box
-
-// create planner so it shows start and end time on the page from 9:00a.m. till 5:00p.m.
-
-
-// current day would show when planner is opened with standard business hour
-
-
-//  time block is color-coded to indicate whether it is past, present or future
-
-
-
-// upon clicking on time block it lets to add event
-
-
 // would have a `save` button to save event to `local storage`
 // get data from localstorage and render to page
 
-// const getFromLocalStorage = function() { 
-//     var nineamDayPlanLs = (JSON.parse(localStorage.getItem("nineamDayPlan")).nineamPlan);
-//     // Research how to append data to textarea in javascript
-//     // document.querySelector("#nineamTextArea") = nineamDayPlanLs;
-//     nineamPlanInput.innerHTML += nineamDayPlanLs;
-// };
-
-// getFromLocalStorage();
-
-// console.log(JSON.parse(localStorage.getItem("nineamDayPlan")).nineamPlan);
-// refreshing page would persist events
-
 const getFromLocalStorage = function() { 
+    // adding logic to make sure to check if localstorage is empty for user never used this application before
+    var nineamDayPlanLs = JSON.parse(localStorage.getItem("nineamDayPlan"))?.nineamPlan ? JSON.parse(localStorage.getItem("nineamDayPlan")).nineamPlan: "";
+    var tenamDayPlanLs = JSON.parse(localStorage.getItem("tenamDayPlan"))?.tenamPlan ? JSON.parse(localStorage.getItem("tenamDayPlan")).tenamPlan: "";
+    var elevenamDayPlanLs = JSON.parse(localStorage.getItem("elevenamDayPlan"))?.elevenamPlan ? JSON.parse(localStorage.getItem("elevenamDayPlan")).elevenamPlan: "";
+    var twelvepmDayPlanLs = JSON.parse(localStorage.getItem("twelvepmDayPlan"))?.twelvepmPlan ? JSON.parse(localStorage.getItem("twelvepmDayPlan")).twelvepmPlan: "";
+    var onepmDayPlanLs = JSON.parse(localStorage.getItem("onepmDayPlan"))?.onepmPlan ? JSON.parse(localStorage.getItem("onepmDayPlan")).onepmPlan: "";
+    var twopmDayPlanLs = JSON.parse(localStorage.getItem("twopmDayPlan"))?.twopmPlan ? JSON.parse(localStorage.getItem("twopmDayPlan")).twopmPlan: "";
+    var threepmDayPlanLs = JSON.parse(localStorage.getItem("threepmDayPlan"))?.threepmPlan ? JSON.parse(localStorage.getItem("threepmDayPlan")).threepmPlan: "";
+    var fourpmDayPlanLs = JSON.parse(localStorage.getItem("fourpmDayPlan"))?.fourpmPlan ? JSON.parse(localStorage.getItem("fourpmDayPlan")).fourpmPlan: "";
+    var fivepmDayPlanLs = JSON.parse(localStorage.getItem("fivepmDayPlan"))?.fivepmPlan ? JSON.parse(localStorage.getItem("fivepmDayPlan")).fivepmPlan: "";
 
-    var nineamDayPlanLs = (JSON.parse(localStorage.getItem("nineamDayPlan")).nineamPlan);
-    var tenamDayPlanLs = (JSON.parse(localStorage.getItem("tenamDayPlan")).tenamPlan);
-    var elevenamDayPlanLs = (JSON.parse(localStorage.getItem("elevenamDayPlan")).elevenamPlan);
-    var twelvepmDayPlanLs = (JSON.parse(localStorage.getItem("twelvepmDayPlan")).twelvepmPlan);
-    var onepmDayPlanLs = (JSON.parse(localStorage.getItem("onepmDayPlan")).onepmPlan);
-    var twopmDayPlanLs = (JSON.parse(localStorage.getItem("twopmDayPlan")).twopmPlan);
-    var threepmDayPlanLs = (JSON.parse(localStorage.getItem("threepmDayPlan")).threepmPlan);
-    var fourpmDayPlanLs = (JSON.parse(localStorage.getItem("fourpmDayPlan")).fourpmPlan);
-    var fivepmDayPlanLs = (JSON.parse(localStorage.getItem("fivepmDayPlan")).fivepmPlan);
-
-    // Research how to append data to textarea in javascript
-    // document.querySelector("#nineamTextArea") = nineamDayPlanLs;
+    
     nineamPlanInput.innerHTML += nineamDayPlanLs;
     tenamPlanInput.innerHTML += tenamDayPlanLs;
     elevenamPlanInput.innerHTML += elevenamDayPlanLs;
@@ -211,5 +194,46 @@ const getFromLocalStorage = function() {
     fourpmPlanInput.innerHTML += fourpmDayPlanLs;
     fivepmPlanInput.innerHTML += fivepmDayPlanLs;
 };
-
+// refreshing page would persist events
 getFromLocalStorage();
+
+
+// Array to collect all time block and use it later
+
+var mainArray = [];
+// get all the hours in an array/object
+$("div[class*='time-block']").each(function(data) {
+    mainArray.push ($(this));
+    // console.log(this);
+})
+
+// testing here to make sure hour array looks good
+console.log(mainArray[2].data('hour'));
+
+
+
+// creating IDs to use for time block compare function
+
+const presentPastFuture = function() {
+    console.log(currentHour);
+    // console.log(hourEleven);
+    // console.log(mainArray[7].data('hour'));
+    for (i = 0; i < mainArray.length; i++) {
+        if ((mainArray[i].data('hour')) == currentHour) {
+            $(mainArray[i]).addClass('present');
+            $(mainArray[i]).removeClass('future');
+            $(mainArray[i]).removeClass('past');
+        } else if ((mainArray[i].data('hour')) < currentHour) {
+            $(mainArray[i]).addClass('past');
+            $(mainArray[i]).removeClass('present');
+            $(mainArray[i]).removeClass('future');
+        }
+        else { 
+            $(mainArray[i]).addClass('future');
+            $(mainArray[i]).removeClass('present');
+            $(mainArray[i]).removeClass('past');
+        }
+    }
+}
+
+presentPastFuture();
