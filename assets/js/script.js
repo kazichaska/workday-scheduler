@@ -5,7 +5,7 @@ var currentHour = moment().format('H');
 // getting cu
 var now = moment(); 
 
-console.log(currentHour);
+// console.log(currentHour);
 
 // print current date and time on `lead`
 
@@ -208,14 +208,14 @@ $("div[class*='time-block']").each(function(data) {
 })
 
 // testing here to make sure hour array looks good
-console.log(mainArray[2].data('hour'));
+// console.log(mainArray[2].data('hour'));
 
 
 
 // creating IDs to use for time block compare function
 
 const presentPastFuture = function() {
-    console.log(currentHour);
+    // console.log(currentHour);
     // console.log(hourEleven);
     // console.log(mainArray[7].data('hour'));
     for (i = 0; i < mainArray.length; i++) {
