@@ -1,7 +1,8 @@
 
 var currentDate = moment().format('dddd, MMMM Do');
-var currentHour = moment().format('h');
-
+// making 24 hour clock for time calculation
+var currentHour = moment().format('H');
+// getting cu
 var now = moment(); 
 
 console.log(currentHour);
@@ -171,16 +172,16 @@ fivepmButton.addEventListener("click", function(event) {
 // get data from localstorage and render to page
 
 const getFromLocalStorage = function() { 
-
-    var nineamDayPlanLs = (JSON.parse(localStorage.getItem("nineamDayPlan")).nineamPlan);
-    var tenamDayPlanLs = (JSON.parse(localStorage.getItem("tenamDayPlan")).tenamPlan);
-    var elevenamDayPlanLs = (JSON.parse(localStorage.getItem("elevenamDayPlan")).elevenamPlan);
-    var twelvepmDayPlanLs = (JSON.parse(localStorage.getItem("twelvepmDayPlan")).twelvepmPlan);
-    var onepmDayPlanLs = (JSON.parse(localStorage.getItem("onepmDayPlan")).onepmPlan);
-    var twopmDayPlanLs = (JSON.parse(localStorage.getItem("twopmDayPlan")).twopmPlan);
-    var threepmDayPlanLs = (JSON.parse(localStorage.getItem("threepmDayPlan")).threepmPlan);
-    var fourpmDayPlanLs = (JSON.parse(localStorage.getItem("fourpmDayPlan")).fourpmPlan);
-    var fivepmDayPlanLs = (JSON.parse(localStorage.getItem("fivepmDayPlan")).fivepmPlan);
+    // adding logic to make sure to check if localstorage is empty for user never used this application before
+    var nineamDayPlanLs = JSON.parse(localStorage.getItem("nineamDayPlan"))?.nineamPlan ? JSON.parse(localStorage.getItem("nineamDayPlan")).nineamPlan: "";
+    var tenamDayPlanLs = JSON.parse(localStorage.getItem("tenamDayPlan"))?.tenamPlan ? JSON.parse(localStorage.getItem("tenamDayPlan")).tenamPlan: "";
+    var elevenamDayPlanLs = JSON.parse(localStorage.getItem("elevenamDayPlan"))?.elevenamPlan ? JSON.parse(localStorage.getItem("elevenamDayPlan")).elevenamPlan: "";
+    var twelvepmDayPlanLs = JSON.parse(localStorage.getItem("twelvepmDayPlan"))?.twelvepmPlan ? JSON.parse(localStorage.getItem("twelvepmDayPlan")).twelvepmPlan: "";
+    var onepmDayPlanLs = JSON.parse(localStorage.getItem("onepmDayPlan"))?.onepmPlan ? JSON.parse(localStorage.getItem("onepmDayPlan")).onepmPlan: "";
+    var twopmDayPlanLs = JSON.parse(localStorage.getItem("twopmDayPlan"))?.twopmPlan ? JSON.parse(localStorage.getItem("twopmDayPlan")).twopmPlan: "";
+    var threepmDayPlanLs = JSON.parse(localStorage.getItem("threepmDayPlan"))?.threepmPlan ? JSON.parse(localStorage.getItem("threepmDayPlan")).threepmPlan: "";
+    var fourpmDayPlanLs = JSON.parse(localStorage.getItem("fourpmDayPlan"))?.fourpmPlan ? JSON.parse(localStorage.getItem("fourpmDayPlan")).fourpmPlan: "";
+    var fivepmDayPlanLs = JSON.parse(localStorage.getItem("fivepmDayPlan"))?.fivepmPlan ? JSON.parse(localStorage.getItem("fivepmDayPlan")).fivepmPlan: "";
 
     
     nineamPlanInput.innerHTML += nineamDayPlanLs;
@@ -206,6 +207,7 @@ $("div[class*='time-block']").each(function(data) {
     // console.log(this);
 })
 
+// testing here to make sure hour array looks good
 console.log(mainArray[2].data('hour'));
 
 
@@ -215,35 +217,23 @@ console.log(mainArray[2].data('hour'));
 const presentPastFuture = function() {
     console.log(currentHour);
     // console.log(hourEleven);
-    console.log(mainArray[7].data('hour'));
-    console.log($("div[class*='time-block']"));
+    // console.log(mainArray[7].data('hour'));
     for (i = 0; i < mainArray.length; i++) {
-        if ((mainArray[i].data('hour')) === currentHour) {
-            $("div[class*='time-block']").addClass('present');
-            $("div[class*='time-block']").removeClass('future');
-            $("div[class*='time-block']").removeClass('past');
+        if ((mainArray[i].data('hour')) == currentHour) {
+            $(mainArray[i]).addClass('present');
+            $(mainArray[i]).removeClass('future');
+            $(mainArray[i]).removeClass('past');
         } else if ((mainArray[i].data('hour')) < currentHour) {
-            $("div[class*='time-block']").addClass('past');
-            $("div[class*='time-block']").removeClass('present');
-            $("div[class*='time-block']").removeClass('future');
+            $(mainArray[i]).addClass('past');
+            $(mainArray[i]).removeClass('present');
+            $(mainArray[i]).removeClass('future');
         }
         else { 
-            $("div[class*='time-block']").addClass('future');
-            $("div[class*='time-block']").removeClass('present');
-            $("div[class*='time-block']").removeClass('past');
+            $(mainArray[i]).addClass('future');
+            $(mainArray[i]).removeClass('present');
+            $(mainArray[i]).removeClass('past');
         }
     }
 }
 
 presentPastFuture();
-
-// $('div.time-block')
-
-// const testTimeBlock = $("div[class*='time-block']")
-// console.log(testTimeBlock);
-
-// $("div[class*='time-block']").each(function() {
-//     // add if statement as above and at the time it present/past/future
-//     $(this).addClass('future');
-//     // if (currentHour == )
-// });

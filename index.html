@@ -18,8 +18,6 @@
       href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
       rel="stylesheet"
     />
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css"> -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" integrity="sha512-UyNhw5RNpQaCai2EdC+Js0QL4RlVmiq41DkmCJsRV3ZxipG2L0HhTqIf/H9Hp8ez2EnFlkBnjRGJU2stW3Lj+w==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Work Day Scheduler</title>
   </head>
@@ -33,63 +31,63 @@
     <div class="container">
       <!-- Timeblocks go here -->
 
-      <div class="row time-block 9am-time-block" data-hour="9">
-        <div class="col-2 col-lg-1 hour nineamhour">9 am</div>
+      <div class="row time-block" data-hour="9">
+        <div class="col-2 col-lg-1 hour">9 am</div>
         <textarea id="nineamTextArea" class="col-8 col-lg-10"></textarea>
           <button id="nineambutton" class=" col-2 col-lg-1 btn btn-block saveBtn d-flex justify-content-center align-items-center">
             <i class="fas fa-save"></i>
           </button>
       </div>
-      <div class="row time-block 10am-time-block" data-hour="10">
-        <div class="col-2 col-lg-1 hour tenamhour">10 am</div>
+      <div class="row time-block" data-hour="10">
+        <div class="col-2 col-lg-1 hour">10 am</div>
         <textarea id="tenamTextArea" class="col-8 col-lg-10"></textarea>
           <button id="tenambutton" class=" col-2 col-lg-1 btn btn-block saveBtn d-flex justify-content-center align-items-center">
             <i class="fas fa-save"></i>
           </button>
       </div>
-      <div class="row time-block 11am-time-block" data-hour="11">
-        <div class="col-2 col-lg-1 hour elevenamhour">11 am</div>
+      <div class="row time-block" data-hour="11">
+        <div class="col-2 col-lg-1 hour">11 am</div>
         <textarea id="elevenamTextArea" class="col-8 col-lg-10"></textarea>
           <button id="elevenambutton" class=" col-2 col-lg-1 btn btn-block saveBtn d-flex justify-content-center align-items-center">
             <i class="fas fa-save"></i>
           </button>
       </div>
-      <div class="row time-block 12pm-time-block" data-hour="12">
-        <div class="col-2 col-lg-1 hour 12pm-hour">12 pm</div>
+      <div class="row time-block" data-hour="12">
+        <div class="col-2 col-lg-1 hour">12 pm</div>
         <textarea id="twelvepmTextArea" class="col-8 col-lg-10"></textarea>
           <button id="twelvepmbutton" class=" col-2 col-lg-1 btn btn-block saveBtn d-flex justify-content-center align-items-center">
             <i class="fas fa-save"></i>
           </button>
       </div>
-      <div class="row time-block 1pm-time-block" data-hour="1">
+      <div class="row time-block" data-hour="13">
         <div class="col-2 col-lg-1 hour">1 pm</div>
         <textarea id="onepmTextArea" class="col-8 col-lg-10"></textarea>
           <button id="onepmbutton" class=" col-2 col-lg-1 btn btn-block saveBtn d-flex justify-content-center align-items-center">
             <i class="fas fa-save"></i>
           </button>
       </div>
-      <div class="row time-block 2pm-time-block" data-hour="2">
+      <div class="row time-block" data-hour="14">
         <div class="col-2 col-lg-1 hour">2 pm</div>
         <textarea id="twopmTextArea"  class="col-8 col-lg-10"></textarea>
           <button id="twopmbutton" class=" col-2 col-lg-1 btn btn-block saveBtn d-flex justify-content-center align-items-center">
             <i class="fas fa-save"></i>
           </button>
       </div>
-      <div class="row time-block 3pm-time-block" data-hour="3">
+      <div class="row time-block" data-hour="15">
         <div class="col-2 col-lg-1 hour">3 pm</div>
         <textarea id="threepmTextArea" class="col-8 col-lg-10"></textarea>
           <button id="threepmbutton" class=" col-2 col-lg-1 btn btn-block saveBtn d-flex justify-content-center align-items-center">
             <i class="fas fa-save"></i>
           </button>
       </div>
-      <div class="row time-block 4pm-time-block" data-hour="4">
+      <div class="row time-block" data-hour="16">
         <div class="col-2 col-lg-1 hour">4 pm</div>
         <textarea id="fourpmTextArea" class="col-8 col-lg-10"></textarea>
           <button id="fourpmbutton" class=" col-2 col-lg-1 btn btn-block saveBtn d-flex justify-content-center align-items-center">
             <i class="fas fa-save"></i>
           </button>
       </div>
-      <div class="row time-block 5pm-time-block" data-hour="5">
+      <div class="row time-block" data-hour="17">
         <div class="col-2 col-lg-1 hour">5 pm</div>
         <textarea id="fivepmTextArea"  class="col-8 col-lg-10"></textarea>
           <button id="fivepmbutton" class=" col-2 col-lg-1 btn btn-block saveBtn d-flex justify-content-center align-items-center">
@@ -100,13 +98,6 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/jquery-ui-touch-punch@0.2.3/jquery.ui.touch-punch.min.js"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>   -->
     <script src="./assets/js/script.js"></script>
   </body>
 </html>
